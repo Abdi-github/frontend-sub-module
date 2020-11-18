@@ -4,13 +4,19 @@ import thunk from "redux-thunk";
 import { cartReducer } from "./reducers/cartReducers";
 import {
   orderCreateReducer,
+  orderDeleteReducer,
+  orderDeliverReducer,
   orderDetailsReducer,
   orderHistoryListReducer,
+  orderListReducer,
   orderPayReducer,
 } from "./reducers/orderReducers";
 import {
   productListReducer,
   productDetailsReducer,
+  productCreateReducer,
+  productUpdateReducer,
+  productDeleteReducer,
 } from "./reducers/productReducers";
 import {
   userProfileDetailsReducer,
@@ -50,6 +56,14 @@ const reducer = combineReducers({
 
   userDetails: userProfileDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+
+  productCreate: productCreateReducer,
+  productUpdate: productUpdateReducer,
+  productDelete: productDeleteReducer,
+
+  orderList: orderListReducer,
+  orderDelete: orderDeleteReducer,
+  orderDeliver: orderDeliverReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

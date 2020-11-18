@@ -16,6 +16,10 @@ import OrderDetailsPage from "./components/pages/OrderDetailsPage";
 import OrderHistoryPage from "./components/pages/OrderHistoryPage";
 import UserProfileDetailsPage from "./components/pages/UserProfileDetailsPage";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute";
+import ProductListPage from "./components/pages/ProductListPage";
+import ProductEditPage from "./components/pages/ProductEditPage";
+import OrderListPage from "./components/pages/OrderListPage";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -67,6 +71,27 @@ function App() {
             ) : (
               <Link to="/signin">Sign In</Link>
             )}
+            {userInfo && userInfo.isAdmin && (
+              <div className="dropdown">
+                <Link to="#admin">
+                  Admin <i className="fa fa-caret-down"></i>
+                </Link>
+                <ul className="dropdown-content">
+                  <li>
+                    <Link to="/dashboard">Dashboard</Link>
+                  </li>
+                  <li>
+                    <Link to="/productlist">Products</Link>
+                  </li>
+                  <li>
+                    <Link to="/orderlist">Orders</Link>
+                  </li>
+                  <li>
+                    <Link to="/userlist">Users</Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
         </header>
         <main>
@@ -85,6 +110,13 @@ function App() {
             path="/userProfile"
             component={UserProfileDetailsPage}
           />
+          <AdminRoute path="/productlist" component={ProductListPage} />
+          <Route
+            path="/product/:id/edit"
+            component={ProductEditPage}
+            exact
+          ></Route>
+          <AdminRoute path="/orderlist" component={OrderListPage} />
         </main>
         <footer className="row center">All right reserved</footer>
       </div>
